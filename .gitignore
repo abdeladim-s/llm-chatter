@@ -147,3 +147,4 @@ _examples
 src/.idea
 mtests
 docs
+llm_chatter/tts_files

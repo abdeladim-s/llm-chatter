@@ -51,6 +51,8 @@ class LLMCallbackHandler(BaseCallbackHandler):
             self.sentence = ''
 
     def on_llm_start(self, serialized, prompts, **kwargs,):
+        # create tts folder
+        os.makedirs(TTS_FOLDER, exist_ok=True)
         # clear tts folder
         files = os.listdir(TTS_FOLDER)
         for file in files:
@@ -99,15 +101,6 @@ def play(file):
     sd.play(y, fs)
     sd.wait()
     os.remove(file)
-
-
-def say_response():
-    tts_folder = os.listdir(TTS_FOLDER)
-    number_files = len(tts_folder)
-    for i in range(number_files):
-        f = pathlib.Path(TTS_FOLDER) / f"{i}.{OUTPUT_TTS_FILE_EXTENSION}"
-        play(f.resolve())
-
 
 #
 # template_messages = [
